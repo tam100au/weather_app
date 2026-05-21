@@ -1,0 +1,197 @@
+:root {
+  color-scheme: light;
+  --bg: #f6f5f3;
+  --surface: #ffffff;
+  --surface-soft: #eef0ef;
+  --text: #141414;
+  --muted: #5b6369;
+  --accent: #4a90e2;
+  --border: rgba(20, 20, 20, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, rgba(74, 144, 226, 0.08), transparent 30%), var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+.hero {
+  display: grid;
+  gap: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+
+.lead {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  max-width: 42rem;
+}
+
+.weather-form {
+  display: grid;
+  gap: 1rem;
+  padding: 1.75rem;
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  border: 1px solid var(--border);
+}
+
+.field-group {
+  display: grid;
+  gap: 0.5rem;
+}
+
+label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+input {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(20, 20, 20, 0.1);
+  background: var(--surface-soft);
+  color: var(--text);
+}
+
+input:focus {
+  outline: none;
+  border-color: rgba(74, 144, 226, 0.55);
+  box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.12);
+}
+
+button {
+  align-self: start;
+  padding: 0.95rem 1rem;
+  border: none;
+  border-radius: 14px;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover,
+button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(74, 144, 226, 0.22);
+}
+
+.feedback {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  min-height: 1.25rem;
+}
+
+.result-card {
+  margin-top: 2rem;
+  padding: 1.75rem;
+  border-radius: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.06);
+}
+
+.hidden {
+  display: none;
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.location {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.condition {
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+}
+
+.weather-icon {
+  width: 96px;
+  height: 96px;
+}
+
+.weather-metrics {
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.metric {
+  padding: 1rem;
+  border-radius: 18px;
+  background: var(--bg);
+  border: 1px solid rgba(20, 20, 20, 0.06);
+}
+
+.metric-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+strong {
+  display: block;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding-top: 2rem;
+  }
+
+  .result-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .weather-metrics {
+    grid-template-columns: 1fr;
+  }
+}
