@@ -1,6 +1,6 @@
-const API_KEY = "537ff85229aa7fed10c3a6790f827093";
 const FEEDBACK = document.getElementById("feedback");
 const FORM = document.getElementById("weather-form");
+const API_KEY_INPUT = document.getElementById("api-key");
 const RESULT_SECTION = document.getElementById("result");
 const LOCATION_NAME = document.getElementById("location-name");
 const WEATHER_CONDITION = document.getElementById("weather-condition");
@@ -25,12 +25,12 @@ function showFeedback(message, isError = false) {
  * @param {string} country
  * @returns {string}
  */
-function buildApiUrl(city, country) {
+function buildApiUrl(city, country, apiKey) {
   const baseUrl = "https://api.openweathermap.org/data/2.5/weather";
   const params = new URLSearchParams({
     q: `${city.trim()},${country.trim()}`,
     units: "metric",
-    appid: API_KEY,
+    appid: apiKey,
   });
   return `${baseUrl}?${params}`;
 }
@@ -67,14 +67,12 @@ function renderWeather(data) {
  * @param {string} city
  * @param {string} country
  */
-async function fetchWeather(city, country) {
-  if (!API_KEY || API_KEY === "YOUR_OPENWEATHERMAP_API_KEY") {
-    throw new Error(
-      "Please add your OpenWeatherMap API key to the API_KEY constant in script.js."
-    );
+async function fetchWeather(city, country, apiKey) {
+  if (!apiKey) {
+    throw new Error("Please enter your OpenWeatherMap API key in the form.");
   }
 
-  const url = buildApiUrl(city, country);
+  const url = buildApiUrl(city, country, apiKey);
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -92,9 +90,10 @@ FORM.addEventListener("submit", async (event) => {
 
   const city = FORM.city.value.trim();
   const country = FORM.country.value.trim();
+  const apiKey = API_KEY_INPUT.value.trim();
 
-  if (!city || !country) {
-    showFeedback("Please enter both city and country.", true);
+  if (!city || !country || !apiKey) {
+    showFeedback("Please enter city, country, and API key.", true);
     RESULT_SECTION.classList.add("hidden");
     return;
   }
@@ -103,7 +102,7 @@ FORM.addEventListener("submit", async (event) => {
   RESULT_SECTION.classList.add("hidden");
 
   try {
-    const data = await fetchWeather(city, country);
+    const data = await fetchWeather(city, country, apiKey);
     renderWeather(data);
     showFeedback("Weather updated.");
   } catch (error) {

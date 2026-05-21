@@ -11,8 +11,8 @@ WEATHERLY is a lightweight, static weather lookup app built with HTML, CSS, and 
 ## Setup
 
 1. Obtain a free API key from OpenWeatherMap: https://openweathermap.org/api
-2. Open `script.js` and replace `YOUR_OPENWEATHERMAP_API_KEY` with your API key.
-3. Open `index.html` in a browser to run the app locally.
+2. Open `index.html` in a browser to run the app locally.
+3. Enter your API key in the app form along with city and country.
 
 ## How to use
 
