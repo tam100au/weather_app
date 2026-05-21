@@ -1,4 +1,4 @@
-const API_KEY = "YOUR_OPENWEATHERMAP_API_KEY";
+const API_KEY = "537ff85229aa7fed10c3a6790f827093";
 const FEEDBACK = document.getElementById("feedback");
 const FORM = document.getElementById("weather-form");
 const RESULT_SECTION = document.getElementById("result");
